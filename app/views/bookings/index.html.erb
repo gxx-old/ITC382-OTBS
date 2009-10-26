@@ -1,0 +1,6 @@
+<%= set_title 'Viewing Bookings' -%>
+<%- if @bookings.nil? %>
+<h2>No bookings exists</h2>
+<%- else -%>
+<%= render :partial => 'booking', :collection => @bookings %>
+<%- end -%>

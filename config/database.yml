@@ -1,0 +1,28 @@
+# JDBC Setup
+# Adjust JDBC driver URLs as necessary.
+development:
+      host: localhost
+      adapter: jdbc
+      driver: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/OTBS_development
+      username: root
+      password: password
+
+# Warning: The database defined as 'test' will be erased and
+# re-generated from your development database when you run 'rake'.
+# Do not set this db to the same as development or production.
+test:
+      host: localhost
+      adapter: jdbc
+      driver: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/OTBS_production
+      username: root
+      password: password
+
+production:
+      host: localhost
+      adapter: jdbc
+      driver: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/OTBS_testing
+      username: root
+      password: password

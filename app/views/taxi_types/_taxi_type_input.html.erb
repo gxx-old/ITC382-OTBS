@@ -1,0 +1,27 @@
+<h2>Taxi Type</h2>
+<%- if TaxiType.all.empty? -%>
+No taxi types have been entered.<br/>
+A booking cannot be created.<br />
+<b>Please contact administrator.</b>
+<%- else -%>
+<% form_table do %>
+<%= form_input :taxi_type, :taxitype, 'Type:', collection_select(:taxi_type, :id, TaxiType.all, :id, :taxitype) %>
+<%= table_element 'Taxi Price Per Kilometer:', '$<b id="taxi_type_price_per_kilometer">N/A</b>'  %>
+<%= table_element 'Taxi Price Per Minute:',    '$<b id="taxi_type_price_per_minute">N/A</b>'      %>
+<%= table_element 'Taxi Flag Fee:',            '$<b id="taxi_type_flag_fee">N/A</b>'									    %>
+<% end %>
+<script type="text/javascript">
+taxiArray = $H();
+<%- TaxiType.all.each do |taxi| -%>
+taxiArray['<%= taxi.id %>'] = [<%= "#{taxi.price_per_kilometer}, #{taxi.price_per_minute}, #{taxi.flag_fee}" %>];
+<%- end -%>
+function updateTaxiInfo(event){
+        newvalue = taxiArray[$('taxi_type_id').value];
+        $('taxi_type_price_per_kilometer').innerHTML = newvalue[0];
+        $('taxi_type_price_per_minute').innerHTML = newvalue[1];
+        $('taxi_type_flag_fee').innerHTML = newvalue[2];
+}
+updateTaxiInfo();
+$('taxi_type_id').observe('change',updateTaxiInfo);
+</script>
+<%- end -%>

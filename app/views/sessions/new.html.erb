@@ -1,0 +1,11 @@
+<%= set_title 'Login' -%>
+<% form_tag session_path do %>
+<% form_table do %>
+<%= form_input :session, :login,    'Login:',    text_field(:session, :login   ) %>
+<%= form_input :session, :password, 'Password:', text_field(:session, :password) %>
+<% end %>
+<div style="margin-left: 50px">
+<%= check_box_tag :remember_me %> <%= label :session, :remember_me, 'Remember me?' %>
+</div>
+<%= submit_tag 'Log in', :class => 'submitbutton' %>
+<% end %>

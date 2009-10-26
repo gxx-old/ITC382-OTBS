@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><%= 'OTBS - ' + (yield :title or 'Untitled') -%></title>
+<meta name="description" content="Online Taxi Booking System" />
+<meta name="keywords" content="OTBS, Taxi, Taxi Booking, Online Taxi Booking" />
+<%= stylesheet_link_tag 'sitestylescreen' %>
+<%= javascript_include_tag 'prototype' %>
+<% #javascript_include_tag 'sidebar'    %>
+</head>
+<body>
+<table id="bodyencap">
+<tr>
+<td colspan="2" id="headerencap">
+Online Taxi Booking System
+</td>
+</tr>
+<tr>
+<td id="sidebarencap">
+<span class="navtitle">User</span>
+<%- if logged_in? -%>
+<span id="loggedinas">
+Logged in as: <b><%= current_user.login %></b>
+</span>
+<%=  link_to 'Logout', session_url, :method => :delete %>
+<%- else -%>
+<%= link_to 'Login', new_session_url %>
+<%= link_to 'Register', new_user_url %>
+<%- end -%>
+<span class="navtitle">Taxis</span>
+<%= link_to 'Book a Taxi', new_booking_url %>
+<%= link_to 'View Taxi Selection', taxi_types_url %>
+<%- if logged_in? -%>
+<%= link_to 'View Previous Taxi Bookings', bookings_url %>
+<%= link_to 'Cancel a Taxi Booking', :controller => :bookings, :action => :editable %>
+<%- end -%>
+<span class="navtitle">Other</span>
+<%= link_to 'About', about_url %>
+</td>
+<td id="contentencap">
+<%- if flash[:notice] -%>
+<h2 style="text-align: center"><%= flash[:notice] %></h2>
+<%- end -%>
+<%= yield %>
+</td>
+</tr>
+<tr>
+<td colspan="2" id="footerencap">
+Copyright 2009 Online Taxi Booking System. All rights reserved.
+</td>
+</tr>
+</table>
+</body>
+</html>

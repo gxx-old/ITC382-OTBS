@@ -1,0 +1,23 @@
+<%= set_title 'New Taxi Booking' -%>
+<% form_for @booking do |f| %>
+<%- unless @booking.errors.empty? -%>
+<%= f.error_messages %>
+<%- end -%>
+<%= render :partial => '/taxi_types/taxi_type_input' %>
+<h2>Pick-up Location</h2>
+<%= render :partial => '/addresses/address_input',   :locals => { :address =>  @pick_up, :modelname => :pick_up }  %>
+<h3>Time of Pick-up</h3>
+<% form_table do %>
+<%= form_input :booking, :time, 'Pickup Time:',
+          f.datetime_select(
+            :time,
+            :date_seperator => ' &nbsp; ',
+            :default    => Time.now + 20.minutes,
+            :start_year => Time.now.year,
+            :end_year	=> Time.now.year + 1 ) %>
+<% end %>
+<h2>Destination</h2>
+<%= render :partial => '/addresses/address_input', :locals => { :address => @destination, :modelname => :destination }  %>
+<%= render :partial => '/credit_cards/credit_card_input', :locals => { :credit_card => @credit_card } %>
+<%= f.submit 'Create Booking', :class => 'submitbutton' %>
+<% end %>

@@ -1,0 +1,13 @@
+<%= set_title 'User Registration' -%>
+<% form_for @user do |f| %>
+<%- unless @user.errors.empty? -%>
+<%=	  f.error_messages %>
+<%- end -%>
+<% form_table do %>
+<%= form_input :user, :login,																	'Login:',												f.text_field(:login)																				 %>
+<%= form_input :user, :email,																	'Email:',												f.text_field(:email)																					%>
+<%= form_input :user, :password,														'Password:',									f.password_field(:password)														%>
+<%= form_input :user, :password_confirmation, 'Confirm Password:', f.password_field(:password_confirmation) %>
+<% end %>
+<%= submit_tag 'Register', :class => 'submitbutton' %>
+<% end %>

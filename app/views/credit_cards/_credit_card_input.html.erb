@@ -1,0 +1,13 @@
+<h2>Credit Card Details</h2>
+<% form_table do %>
+<% fields_for credit_card do |c| %>
+<%=   form_input :credit_card, :name,       'Name:',           c.text_field(:name,       :size => 25)         %>
+<%=   form_input :credit_card, :cardnumber, 'Card Number:',    c.text_field(:cardnumber, :size => 16)         %>
+<%=   form_input :credit_card, :type,       'Card Type:',      c.select(:cardtype, {
+                                                                                    'MasterCard' => 'masterCard',
+                                                                                    'Visa'       => 'visa'    })%>
+<%=   form_input :credit_card, :csc,        'CSC:',            c.text_field(:csc,           :size => 3)       %>
+<%=   form_input :credit_card, :expirydate, 'Date of expiry:', c.text_field(:expirydatemonth,   :size => 2) + ' / ' +
+                                                               c.text_field(:expirydateyear,    :size => 2)   %>
+<% end %>
+<% end %>

@@ -1,0 +1,18 @@
+<table class="infotable" style="width: 100%">
+<%= table_element 'Booking Number:',   booking.id %>
+<%= table_element 'Taxi Type:',        link_to(booking.taxi_type.taxitype, booking.taxi_type) %>
+<%= table_element 'Pick-up Location:', render(:partial => booking.pick_up)                    %>
+<%= table_element 'Pick-up Time:',     'do later'                                             %>
+<%= table_element 'Destination:',      render(:partial => booking.destination)                %>
+<tr>
+<td colspan="2" style="text-align: center">
+<div class="bookingoptions">
+<%= link_to 'View', booking %>
+<%- if booking.time > Time.now + 20.minutes -%>
+<%= link_to 'Edit', edit_booking_url(booking) %>
+<%= link_to 'Cancel', :controller => :bookings, :method => :delete, :confirm => 'Are you sure you wish to delete this booking?' %>
+<%- end -%>
+</div>
+</td>
+</tr>
+</table>

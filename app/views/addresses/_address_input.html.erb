@@ -1,0 +1,21 @@
+<% form_table do %>
+<% fields_for modelname do |addr| %>
+<%= form_input modelname, :address,          'Address:',        addr.text_field(:address) %>
+<%= form_input modelname, :type_of_building, 'Building Type:',  addr.select(:type_of_building,
+                                                                     {'House' => 'house',
+                                                                      'Unit' => 'unit',
+                                                                      'Flat' => 'flat',
+                                                                      'Battle-Axe' => 'battle-axe' } ) %>
+<%= form_input modelname, :postcode, 'Postcode:', addr.text_field(:postcode) %>
+<%= form_input modelname, :city,     'City:',     addr.text_field(:city) %>
+<%= form_input modelname, :state,    'State:',    addr.select(:state,
+                                                        {'New South Wales'    => 'NSW',
+                                                        'Victoria'           => 'VIC',
+                                                        'Tasmania'           => 'TAS',
+                                                        'Queensland'         => 'QLD',
+                                                        'ACT'                => 'ACT',
+                                                        'Northern Territory' => 'NT',
+                                                        'Western Australia'  => 'WA',
+                                                        'Southern Australia' => 'SA' } ) %>
+<% end %>
+<% end %>

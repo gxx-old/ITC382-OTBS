@@ -1,0 +1,6 @@
+<%= set_title 'Taxi Types' -%>
+<%- if @taxi_types.nil? -%>
+<h2>No taxi types to view</h2>
+<%- else %>
+<%= render :partial => 'taxi_type', :collection => @taxi_types %>
+<%- end -%>
